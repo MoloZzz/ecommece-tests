@@ -9,17 +9,20 @@ import { UpdateStockDto } from './dto/update-stock.dto';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
   @Post()
-  create(@Body() createProductDto: CreateProductDto) {
+  async create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.productsService.findAll();
   }
 
   @Patch(':id/stock')
-  updateStock(@Param('id') id: string, @Body() updateStockDto: UpdateStockDto) {
+  async updateStock(
+    @Param('id') id: string,
+    @Body() updateStockDto: UpdateStockDto,
+  ) {
     return this.productsService.updateStock(id, updateStockDto);
   }
 }

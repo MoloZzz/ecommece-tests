@@ -9,17 +9,17 @@ import { UpdateOrderStatusDto } from './dto/update-order.dto';
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
+  async create(@Body() createOrderDto: CreateOrderDto) {
     return this.ordersService.create(createOrderDto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.ordersService.findOne(id);
   }
 
   @Patch(':id/status')
-  updateStatus(
+  async updateStatus(
     @Param('id') id: string,
     @Body() updateStatusDto: UpdateOrderStatusDto,
   ) {

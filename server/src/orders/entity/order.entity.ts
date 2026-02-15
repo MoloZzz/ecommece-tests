@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { UserEntity } from 'src/users/entity/user.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { OrderItemEntity } from './order-item.entity';
 
 export enum OrderStatus {
   created = 'created',
@@ -11,15 +20,21 @@ export class OrderEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'uuid', nullable: false })
+  @ManyToOne(() => UserEntity, (user) => user.orders)
+  @JoinColumn({ name: 'userId' })
+  user: UserEntity;
+
+  @Column()
   userId: string;
 
-  @Column({ type: 'jsonb', nullable: false })
-  items: any[];
+  @OneToMany(() => OrderItemEntity, (item) => item.order, {
+    cascade: true,
+  })
+  items: OrderItemEntity[];
 
-  @Column({ type: 'integer', nullable: false })
+  @Column({ type: 'integer' })
   total: number;
 
-  @Column({ type: 'varchar', nullable: false })
-  status: OrderStatus; // created → paid → shipped
+  @Column({ type: 'varchar', nullable: false, default: OrderStatus.created })
+  status: OrderStatus;
 }
