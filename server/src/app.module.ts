@@ -8,16 +8,22 @@ import { dataSourceOptions } from './db/datasource';
 import { OrdersModule } from './orders/orders.module';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
-
+import { LoggerModule } from 'nestjs-pino';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
     }),
-  TypeOrmModule.forRoot(dataSourceOptions),
-  OrdersModule,
-  UsersModule,
-  ProductsModule,],
+    TypeOrmModule.forRoot(dataSourceOptions),
+    OrdersModule,
+    UsersModule,
+    ProductsModule,
+    LoggerModule.forRoot({
+      pinoHttp: {
+        level: process.env.LOG_LEVEL || 'info',
+      },
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
