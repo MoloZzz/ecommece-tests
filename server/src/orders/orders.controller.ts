@@ -15,14 +15,14 @@ export class OrdersController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return this.ordersService.findOne(id);
+    return this.ordersService.findOneOrFail(id);
   }
 
   @Patch(':id/status')
   async updateStatus(
     @Param('id') id: string,
-    @Body() updateStatusDto: UpdateOrderStatusDto,
+    @Body() body: UpdateOrderStatusDto,
   ) {
-    return this.ordersService.updateStatus(id, updateStatusDto);
+    return this.ordersService.updateStatus(id, body.status);
   }
 }

@@ -1,1 +1,3 @@
-export class UpdateStockDto {}
+export class UpdateStockDto {
+  stock: number;
+}
