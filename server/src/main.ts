@@ -23,7 +23,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
 
-  if (configService.get<string>('API_DOCS_ENABLED') === 'true') {
+  if (configService.get<string>('NODE_ENV') !== 'production') {
     const config = new DocumentBuilder()
       .setTitle('API documentation')
       .setDescription('Development API documentation ')
