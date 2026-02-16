@@ -1,0 +1,4 @@
+[
+  { "balance": 1000, "expected": 200 },
+  { "balance": 200, "expected": 400 }
+]
