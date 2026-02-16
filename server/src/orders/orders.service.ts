@@ -61,7 +61,7 @@ export class OrdersService {
   }
 
   async updateStatus(id: string, newStatus: OrderStatus) {
-    const order = await this.findOneOrFail(id);
+    const order = await this.findOneOrFail(id, true);
 
     this.validateTransition(order.status, newStatus);
 
@@ -99,6 +99,7 @@ export class OrdersService {
 
   private async handlePayment(order: OrderEntity) {
     await this.userService.deductBalance(order.userId, order.total);
+    console.log(order);
 
     for (const item of order.items) {
       await this.productService.reserveStock(item.productId, item.quantity);

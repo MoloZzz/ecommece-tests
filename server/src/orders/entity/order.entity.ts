@@ -21,7 +21,7 @@ export class OrderEntity {
   id: string;
 
   @ManyToOne(() => UserEntity, (user) => user.orders)
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'user_id' })
   user: UserEntity;
 
   @Column()

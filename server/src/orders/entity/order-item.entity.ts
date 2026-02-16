@@ -14,14 +14,14 @@ export class OrderItemEntity {
   id: string;
 
   @ManyToOne(() => OrderEntity, (order) => order.items)
-  @JoinColumn({ name: 'orderId' })
+  @JoinColumn({ name: 'order_id' })
   order: OrderEntity;
 
   @Column()
   orderId: string;
 
   @ManyToOne(() => ProductEntity, (product) => product.orderItems)
-  @JoinColumn({ name: 'productId' })
+  @JoinColumn({ name: 'product_id' })
   product: ProductEntity;
 
   @Column()

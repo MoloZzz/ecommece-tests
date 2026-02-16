@@ -53,4 +53,9 @@ export class UsersService {
 
     return this.usersRepository.save(user);
   }
+
+  async updateBalance(id: string, balance: number) {
+    const user = await this.findOneById(id);
+    return this.usersRepository.save({ ...user, balance });
+  }
 }
