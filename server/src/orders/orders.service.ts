@@ -35,6 +35,10 @@ export class OrdersService {
     const items: Partial<OrderItemEntity>[] = [];
 
     for (const item of dto.items) {
+      if (!item.quantity || item.quantity <= 0) {
+        throw new BadRequestException('Quantity must be greater than 0');
+      }
+
       const product = await this.productService.getById(item.productId);
 
       if (product.stock < item.quantity) {

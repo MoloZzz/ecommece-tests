@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDefined, IsInt, IsUUID } from "class-validator";
+import { IsDefined, IsInt, IsPositive, IsUUID, Min } from "class-validator";
+import { Type } from "class-transformer";
 
 export class CreateOrderItemDto {
     @ApiProperty()
@@ -8,7 +9,9 @@ export class CreateOrderItemDto {
     productId: string;
     
     @ApiProperty()
+    @Type(() => Number)
     @IsDefined()
     @IsInt()
+    @IsPositive()
     quantity: number;
 }
