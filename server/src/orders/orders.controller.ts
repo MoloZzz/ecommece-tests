@@ -3,6 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderStatusDto } from './dto/update-order.dto';
+import { IdParamDto } from 'src/common/id-param.dto';
 
 @ApiTags('orders')
 @Controller('orders')
@@ -14,15 +15,15 @@ export class OrdersController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return this.ordersService.findOneOrFail(id);
+  async findOne(@Param() param: IdParamDto) {
+    return this.ordersService.findOneOrFail(param.id);
   }
 
   @Patch(':id/status')
   async updateStatus(
-    @Param('id') id: string,
+    @Param() param: IdParamDto,
     @Body() body: UpdateOrderStatusDto,
   ) {
-    return this.ordersService.updateStatus(id, body.status);
+    return this.ordersService.updateStatus(param.id, body.status);
   }
 }
