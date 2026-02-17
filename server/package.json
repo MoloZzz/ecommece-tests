@@ -19,6 +19,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:data-driven": "jest --config ./test/data-driven/jest-data-driven.json",
+    "test:state-verification": "jest --config ./test/state-verification/jest-state-verification.json",
+    "test:behavior-verification": "jest --config ./test/behavior-verification/jest-behavior-verification.json",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d src/db/datasource.ts",
     "migration:generate": "npm run typeorm -- migration:generate src/db/migrations/migration",
     "migration:run": "npm run typeorm -- migration:run",
