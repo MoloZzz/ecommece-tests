@@ -15,8 +15,8 @@ describe('Orders E2E Flow', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-      app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
-    
+    app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+
     await app.init();
   });
 
@@ -122,7 +122,9 @@ describe('Orders E2E Flow', () => {
       .post('/orders')
       .send({
         userId,
-        items: [{ productId: 'bb07c60d-8d23-495f-86c4-c144899041a0', quantity: 1 }],
+        items: [
+          { productId: 'bb07c60d-8d23-495f-86c4-c144899041a0', quantity: 1 },
+        ],
       })
       .expect(404);
   });

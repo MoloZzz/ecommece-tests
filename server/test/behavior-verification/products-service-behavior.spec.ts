@@ -7,7 +7,7 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 /**
  * Behavior Verification Tests for ProductsService
- * 
+ *
  * These tests verify the behavior and interactions of ProductsService:
  * - Repository interactions
  * - Query builder usage for atomic stock operations
@@ -122,9 +122,9 @@ describe('ProductsService Behavior Verification', () => {
       mockQueryBuilder.execute.mockResolvedValue({ affected: 0 });
 
       // Act & Assert
-      await expect(
-        service.reserveStock(productId, quantity),
-      ).rejects.toThrow(BadRequestException);
+      await expect(service.reserveStock(productId, quantity)).rejects.toThrow(
+        BadRequestException,
+      );
 
       // Behavior verification: error thrown when atomic check fails
       expect(mockQueryBuilder.execute).toHaveBeenCalled();
@@ -234,4 +234,3 @@ describe('ProductsService Behavior Verification', () => {
     });
   });
 });
-

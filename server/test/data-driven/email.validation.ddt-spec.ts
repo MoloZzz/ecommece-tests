@@ -27,14 +27,11 @@ describe('Email validation (data-driven)', () => {
     { email: null, expected: 400 },
   ];
 
-  it.each(emailCases)(
-    'Email: $email',
-    async ({ email, expected }) => {
-      const res = await request(app.getHttpServer())
-        .post('/users')
-        .send({ email });
+  it.each(emailCases)('Email: $email', async ({ email, expected }) => {
+    const res = await request(app.getHttpServer())
+      .post('/users')
+      .send({ email });
 
-      expect(res.status).toBe(expected);
-    }
-  );
+    expect(res.status).toBe(expected);
+  });
 });

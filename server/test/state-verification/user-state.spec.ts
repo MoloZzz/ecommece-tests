@@ -5,7 +5,7 @@ import * as request from 'supertest';
 
 /**
  * State Verification Tests for User Domain Object
- * 
+ *
  * These tests verify the state of users after operations:
  * - User creation state (balance defaults to 0)
  * - Balance updates
@@ -195,4 +195,3 @@ describe('User State Verification', () => {
     });
   });
 });
-

@@ -44,7 +44,9 @@ describe('Payment validation (data-driven)', () => {
       // Create a unique user for each test to avoid email conflicts
       const user = await request(app.getHttpServer())
         .post('/users')
-        .send({ email: `user${balance}${Date.now()}${Math.random()}@test.com` });
+        .send({
+          email: `user${balance}${Date.now()}${Math.random()}@test.com`,
+        });
 
       expect(user.status).toBe(201);
       expect(user.body.id).toBeDefined();
@@ -71,6 +73,6 @@ describe('Payment validation (data-driven)', () => {
         .send({ status: 'paid' });
 
       expect(payRes.status).toBe(expectedStatus);
-    }
+    },
   );
 });

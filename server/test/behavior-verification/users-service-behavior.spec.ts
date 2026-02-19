@@ -7,7 +7,7 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 /**
  * Behavior Verification Tests for UsersService
- * 
+ *
  * These tests verify the behavior and interactions of UsersService:
  * - Repository interactions
  * - Query builder usage for atomic operations
@@ -213,4 +213,3 @@ describe('UsersService Behavior Verification', () => {
     });
   });
 });
-

@@ -46,31 +46,30 @@ describe('OrdersService (Unit)', () => {
   });
 
   it('should calculate total correctly when creating order', async () => {
-  mockUsersService.findOneById.mockResolvedValue({
-    id: 'u1',
-    balance: 1000,
+    mockUsersService.findOneById.mockResolvedValue({
+      id: 'u1',
+      balance: 1000,
+    });
+
+    mockProductsService.getById.mockResolvedValue({
+      id: 'p1',
+      price: 100,
+      stock: 10,
+    });
+
+    mockOrderRepository.create.mockReturnValue({});
+    mockOrderRepository.save.mockResolvedValue({});
+
+    await service.create({
+      userId: 'u1',
+      items: [{ productId: 'p1', quantity: 2 }],
+    });
+
+    expect(mockProductsService.getById).toHaveBeenCalled();
+    expect(mockOrderRepository.create).toHaveBeenCalledWith(
+      expect.objectContaining({ total: 200 }),
+    );
   });
-
-  mockProductsService.getById.mockResolvedValue({
-    id: 'p1',
-    price: 100,
-    stock: 10,
-  });
-
-  mockOrderRepository.create.mockReturnValue({});
-  mockOrderRepository.save.mockResolvedValue({});
-
-  await service.create({
-    userId: 'u1',
-    items: [{ productId: 'p1', quantity: 2 }],
-  });
-
-  expect(mockProductsService.getById).toHaveBeenCalled();
-  expect(mockOrderRepository.create).toHaveBeenCalledWith(
-    expect.objectContaining({ total: 200 }),
-  );
-});
-
 
   it('should throw if insufficient stock', async () => {
     mockProductsService.getById.mockResolvedValue({

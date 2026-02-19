@@ -61,9 +61,7 @@ describe('UsersService', () => {
   it('should throw NotFoundException if user not found', async () => {
     mockUserRepository.findOne.mockResolvedValue(null);
 
-    await expect(service.findOneById('1')).rejects.toThrow(
-      NotFoundException,
-    );
+    await expect(service.findOneById('1')).rejects.toThrow(NotFoundException);
   });
 
   it('should deduct balance successfully', async () => {
@@ -92,7 +90,7 @@ describe('UsersService', () => {
   });
 
   it('should create user with default balance 0', async () => {
-    const dto = { email: 'test@test.com'};
+    const dto = { email: 'test@test.com' };
 
     const createdUser = {
       id: '1',

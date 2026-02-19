@@ -5,7 +5,7 @@ import * as request from 'supertest';
 
 /**
  * State Verification Tests for Product Domain Object
- * 
+ *
  * These tests verify the state of products after operations:
  * - Product creation state
  * - Stock updates
@@ -233,4 +233,3 @@ describe('Product State Verification', () => {
     });
   });
 });
-

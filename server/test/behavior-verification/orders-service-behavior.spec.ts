@@ -9,7 +9,7 @@ import { Repository } from 'typeorm';
 
 /**
  * Behavior Verification Tests for OrdersService (Orchestrator)
- * 
+ *
  * These tests verify the behavior and interactions of OrdersService:
  * - Service method calls to dependencies (UsersService, ProductsService)
  * - Repository interactions
@@ -250,10 +250,7 @@ describe('OrdersService Behavior Verification', () => {
 
       // Behavior verification: UsersService.deductBalance called
       expect(mockUsersService.deductBalance).toHaveBeenCalledTimes(1);
-      expect(mockUsersService.deductBalance).toHaveBeenCalledWith(
-        userId,
-        500,
-      );
+      expect(mockUsersService.deductBalance).toHaveBeenCalledWith(userId, 500);
     });
 
     it('should call ProductsService.reserveStock for each item when paying order', async () => {
@@ -538,4 +535,3 @@ describe('OrdersService Behavior Verification', () => {
     });
   });
 });
-

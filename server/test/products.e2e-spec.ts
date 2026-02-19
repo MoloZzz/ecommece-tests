@@ -28,13 +28,11 @@ describe('Products (e2e)', () => {
   });
 
   it('PATCH /products/:id/stock → should update stock', async () => {
-    const create = await request(app.getHttpServer())
-      .post('/products')
-      .send({
-        name: 'Phone',
-        price: 300,
-        stock: 5,
-      });
+    const create = await request(app.getHttpServer()).post('/products').send({
+      name: 'Phone',
+      price: 300,
+      stock: 5,
+    });
 
     const id = create.body.id;
 

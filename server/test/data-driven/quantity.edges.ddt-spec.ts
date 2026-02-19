@@ -64,6 +64,6 @@ describe('Quantity edges (data-driven)', () => {
         });
 
       expect(res.status).toBe(expected);
-    }
+    },
   );
 });

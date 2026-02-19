@@ -16,11 +16,14 @@ export class UsersController {
 
   @Get('/:id')
   async getUserById(@Param() param: IdParamDto) {
-    return this.usersService.findOneById( param.id);
+    return this.usersService.findOneById(param.id);
   }
 
   @Patch('/:id/balance')
-  async updateUserBalance(@Param('id') id: string, @Body('balance') balance: number) {
+  async updateUserBalance(
+    @Param('id') id: string,
+    @Body('balance') balance: number,
+  ) {
     return this.usersService.updateBalance(id, balance);
-  } 
+  }
 }

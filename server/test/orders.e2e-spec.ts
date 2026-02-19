@@ -15,17 +15,15 @@ describe('Orders (e2e)', () => {
 
   it('Full order lifecycle: create → pay', async () => {
     // 1. Create user
-    const userRes = await request(app.getHttpServer())
-      .post('/users')
-      .send({
-        email: '1buyer257991@mail.com'
-      });
+    const userRes = await request(app.getHttpServer()).post('/users').send({
+      email: '1buyer257991@mail.com',
+    });
 
     const userId = userRes.body.id;
 
     await request(app.getHttpServer())
-        .patch(`/users/${userRes.body.id}/balance`)
-        .send({ balance: 1000 });
+      .patch(`/users/${userRes.body.id}/balance`)
+      .send({ balance: 1000 });
 
     // 2. Create product
     const productRes = await request(app.getHttpServer())
@@ -74,19 +72,15 @@ describe('Orders (e2e)', () => {
   });
 
   it('Should fail if insufficient balance', async () => {
-    const user = await request(app.getHttpServer())
-      .post('/users')
-      .send({
-        email: 'poor1111@mail.com',
-      });
+    const user = await request(app.getHttpServer()).post('/users').send({
+      email: 'poor1111@mail.com',
+    });
 
-    const product = await request(app.getHttpServer())
-      .post('/products')
-      .send({
-        name: 'Expensive_2_2',
-        price: 500,
-        stock: 5,
-      });
+    const product = await request(app.getHttpServer()).post('/products').send({
+      name: 'Expensive_2_2',
+      price: 500,
+      stock: 5,
+    });
 
     const order = await request(app.getHttpServer())
       .post('/orders')

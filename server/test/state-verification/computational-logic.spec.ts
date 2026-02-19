@@ -5,7 +5,7 @@ import * as request from 'supertest';
 
 /**
  * State Verification Tests for Computational Logic
- * 
+ *
  * These tests verify computational logic and calculations:
  * - Order total calculations
  * - Price snapshot calculations
@@ -387,4 +387,3 @@ describe('Computational Logic Verification', () => {
     });
   });
 });
-

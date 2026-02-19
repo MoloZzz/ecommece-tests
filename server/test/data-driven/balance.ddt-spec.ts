@@ -5,7 +5,9 @@ import * as request from 'supertest';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const paymentData = JSON.parse(fs.readFileSync(path.join(__dirname, './payment-data.json'), 'utf-8'));
+const paymentData = JSON.parse(
+  fs.readFileSync(path.join(__dirname, './payment-data.json'), 'utf-8'),
+);
 
 describe('Balance check (data-driven)', () => {
   let app: INestApplication;
@@ -47,7 +49,9 @@ describe('Balance check (data-driven)', () => {
     async ({ balance, expected }) => {
       const user = await request(app.getHttpServer())
         .post('/users')
-        .send({ email: `user${balance}${Date.now()}${Math.random()}@mail.com` });
+        .send({
+          email: `user${balance}${Date.now()}${Math.random()}@mail.com`,
+        });
 
       expect(user.status).toBe(201);
       expect(user.body.id).toBeDefined();
@@ -72,7 +76,7 @@ describe('Balance check (data-driven)', () => {
         .send({ status: 'paid' });
 
       expect(res.status).toBe(expected);
-    }
+    },
   );
 
   it.each(paymentCases)(
@@ -80,7 +84,9 @@ describe('Balance check (data-driven)', () => {
     async ({ balance, expected }) => {
       const user = await request(app.getHttpServer())
         .post('/users')
-        .send({ email: `user${balance}date${Date.now()}${Math.random()}@mail.com` });
+        .send({
+          email: `user${balance}date${Date.now()}${Math.random()}@mail.com`,
+        });
 
       expect(user.status).toBe(201);
       expect(user.body.id).toBeDefined();
@@ -105,6 +111,6 @@ describe('Balance check (data-driven)', () => {
         .send({ status: 'paid' });
 
       expect(res.status).toBe(expected);
-    }
+    },
   );
 });

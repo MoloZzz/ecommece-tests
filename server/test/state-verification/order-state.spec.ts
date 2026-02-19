@@ -5,7 +5,7 @@ import * as request from 'supertest';
 
 /**
  * State Verification Tests for Order Domain Object
- * 
+ *
  * These tests verify the state of orders after operations:
  * - Order creation state (status, total, items)
  * - Order status transitions
@@ -267,4 +267,3 @@ describe('Order State Verification', () => {
     });
   });
 });
-

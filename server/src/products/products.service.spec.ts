@@ -61,11 +61,8 @@ describe('ProductsService', () => {
   it('should throw NotFoundException if product not found', async () => {
     mockRepository.findOne.mockResolvedValue(null);
 
-    await expect(service.getById('1')).rejects.toThrow(
-      NotFoundException,
-    );
+    await expect(service.getById('1')).rejects.toThrow(NotFoundException);
   });
-
 
   it('should reserve stock successfully', async () => {
     mockQueryBuilder.execute.mockResolvedValue({ affected: 1 });
